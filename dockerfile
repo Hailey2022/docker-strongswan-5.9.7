@@ -6,7 +6,7 @@ RUN apt-get update \
     && wget https://download.strongswan.org/strongswan-5.9.7.tar.gz \
     && tar xzvf strongswan-5.9.7.tar.gz \
     && cd strongswan-5.9.7 \
-    && ./configure --prefix=/usr --sysconfdir=/etc --with-systemdsystemunitdir=/lib/systemd/system --enable-eap-identity --enable-eap-mschapv2 --enable-tpm --enable-tss-tss2 --enable-systemd --enable-swanctl --disable-charon --disable-stroke --disable-scepclient --disable-gmp --enable-openssl --disable-dependency-tracking
+    && ./configure --prefix=/usr --sysconfdir=/etc --with-systemdsystemunitdir=/lib/systemd/system --enable-eap-identity --enable-eap-mschapv2 --enable-tpm --enable-tss-tss2 --enable-systemd --enable-swanctl --disable-charon --disable-stroke --disable-scepclient --disable-gmp --enable-openssl --disable-dependency-tracking \
     && make && make install && cd ~ \
     && mkdir -p pki && chmod 700 ~/pki && cd pki \
     && pki --gen --type rsa --size 4096 --outform pem > vpnca.key.pem \
@@ -21,3 +21,4 @@ RUN apt-get update \
     && chmod 600 /etc/swanctl/private/server.key.pem
 
 EXPOSE 500/udp 4500/udp
+
